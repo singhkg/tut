@@ -26,22 +26,31 @@
   </head>
 <body ng-app="ShopList">
   <div ng-controller="ShopListController" class="container">
-  <h1>Shopping List Check Off {{name}}</h1>
+  <h1>Shopping List Check Off {{itemstobuy}}</h1>
 
   <div class="row">
 
     <!-- To Buy List -->
-    <div class="col-md-6">
+    <div ng-controller="ToBuyController as toBuy" class="col-md-6">
      <h2>To Buy:</h2>
      <ul>
-       <li>Buy 10 cookies <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>
-       <li>Buy 10 cookies <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>
+
+       <li><button ng-click="toBuy.additem();" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Show Items to Buy</button></li>
+       <!-- <li>Buy 20 bags Rotis <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>
+       <li>Buy 05 Bowls Dal <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>
+       <li>Buy 03 packets cookies <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>
+       <li>Buy 05 packets snacks <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li> -->
      </ul>
-     <div class="emptyMessage">Everything is bought!</div>
+     <div class="col-md-6" ng-ToBuyController="ShopListShowController as ShowShopList">
+        <ol>
+            <li ng-repeat="item in ShowShopList.itemstobuy">{{item}}</li>
+        </ol>
+     </div>
+     <div class="emptyMessage">Everything is bought! {{itemstobuy}}</div>
     </div>
 
     <!-- Already Bought List -->
-    <div class="col-md-6">
+    <div ng-controller="AlreadyBoughtController as boughtItems" class="col-md-6">
      <h2>Already Bought:</h2>
      <ul>
        <li>Bought 10 cookies</li>
